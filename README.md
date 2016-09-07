@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/robertkowalski/get-license-npm.svg?branch=master)](https://travis-ci.org/robertkowalski/get-license-npm)
+
+# get-license-npm
 
 Tries to find a license file.
 If no license file given, tries to get license information from the
