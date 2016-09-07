@@ -1,6 +1,6 @@
 {
   "name": "get-license-npm",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Gets the license for a npm project",
   "main": "lib/index.js",
   "scripts": {
