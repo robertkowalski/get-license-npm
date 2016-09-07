@@ -1,0 +1,20 @@
+{
+  "name": "get-license-npm-stub-no-license",
+  "version": "1.0.0",
+  "description": "Gets the license for a npm project",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robertkowalski/get-license-npm.git"
+  },
+  "keywords": [
+    "license"
+  ],
+  "author": "Robert Kowalski <rok@kowalski.gd>",
+  "devDependencies": {
+    "tap": "^7.1.0"
+  }
+}

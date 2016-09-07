@@ -1,0 +1,25 @@
+{
+  "name": "get-license-npm",
+  "version": "0.0.1",
+  "description": "Gets the license for a npm project",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "standard --fix && tap test/*.js"
+  },
+  "dependencies": {
+    "hosted-git-info": "^2.1.5"
+  },
+  "devDependencies": {
+    "standard": "^8.0.0",
+    "tap": "^7.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robertkowalski/get-license-npm.git"
+  },
+  "keywords": [
+    "license"
+  ],
+  "author": "Robert Kowalski <rok@kowalski.gd>",
+  "license": "MIT"
+}
