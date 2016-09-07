@@ -2,7 +2,8 @@
 Tries to find a license file.
 If no license file given, tries to get license information from the
 `package.json`.
-Adds repository url and path given nothing is found (for manual checks)
+
+Adds repository url and path (for manual checks).
 
 ## API
 
