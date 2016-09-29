@@ -41,3 +41,13 @@ provided, the callback is called.
   "repo": "https://github.com/robertkowalski/get-license-npm"
 }
 ```
+
+## Contributing
+
+`get-license-npm` is an OPEN Open Source Project. This means that:
+
+  Individuals making significant and valuable contributions are given commit-
+  access to the project to contribute as they see fit. This project is more like
+  an open wiki than a standard guarded open source project.
+
+More infos in [CONTRIBUTING.md](https://github.com/robertkowalski/get-license-npm/blob/master/CONTRIBUTING.md)
