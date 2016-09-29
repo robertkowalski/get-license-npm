@@ -38,6 +38,7 @@ provided, the callback is called.
 {
   "license": "MIT",
   "licenseFile": "/Users/robert/projects/get-license-npm/LICENSE",
-  "repo": "https://github.com/robertkowalski/get-license-npm"
+  "repo": "https://github.com/robertkowalski/get-license-npm",
+  "private": false
 }
 ```
