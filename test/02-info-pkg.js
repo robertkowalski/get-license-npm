@@ -2,7 +2,7 @@ const tap = require('tap')
 const test = tap.test
 const path = require('path')
 
-const getLicenseInfo = require('../lib/index.js')
+const getLicenseInfo = require('../')
 
 test('gets data from package json', (t) => {
   const f = path.join(__dirname, '/fixtures/pkg-with-license-in-json')

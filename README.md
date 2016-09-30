@@ -19,28 +19,32 @@ provided, the callback is called.
 #### Example:
 
 ```js
-  const path = require('path')
-  const p = path.join(__dirname, 'get-license-npm')
+const getLicenseInfo = require('./')
+const modulePath = __dirname
 
-  // callback based API
-  getLicenseInfo(p, (err, res) => {
+// callback based API
+getLicenseInfo(modulePath, (err, res) => {
+  if (err) return console.log('OH NOES', err)
+
+  console.log(res)
+})
+
+// Promise based API
+getLicenseInfo(modulePath)
+  .then((res) => {
     console.log(res)
   })
-
-  // Promise based API
-  getLicenseInfo(p)
-    .then((res) => {
-      console.log(res)
-    })
+  .catch(err => console.log('OH NOES', err))
 
 // returns:
-
-{
-  "license": "MIT",
-  "licenseFile": "/Users/robert/projects/get-license-npm/LICENSE",
-  "repo": "https://github.com/robertkowalski/get-license-npm",
-  "private": false
-}
+/*
+  {
+    "license": "MIT",
+    "licenseFile": "/Users/robert/projects/get-license-npm/LICENSE",
+    "repo": "https://github.com/robertkowalski/get-license-npm",
+    "private": false
+  }
+*/
 ```
 
 ## Contributing
