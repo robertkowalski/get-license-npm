@@ -17,5 +17,6 @@
   "license": "MIT",
   "devDependencies": {
     "tap": "^7.1.0"
-  }
+  },
+  "private": true
 }
