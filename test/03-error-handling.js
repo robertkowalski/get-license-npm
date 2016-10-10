@@ -1,7 +1,7 @@
 const tap = require('tap')
 const test = tap.test
 
-const getLicenseInfo = require('../lib/index.js')
+const getLicenseInfo = require('../')
 
 test('invokes callback on module not found error', (t) => {
   const f = '/fooo/bar/baz'

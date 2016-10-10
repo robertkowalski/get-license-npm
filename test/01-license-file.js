@@ -3,7 +3,7 @@ const test = tap.test
 const path = require('path')
 const waterfall = require('async/waterfall')
 
-const getLicenseInfo = require('../lib/index.js')
+const getLicenseInfo = require('../')
 
 const dirs = [
   'pkg-with-licence-file',
