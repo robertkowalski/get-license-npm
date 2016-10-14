@@ -26,41 +26,80 @@ const noop = () => {}
 
 module.exports = getLicense
 function getLicense (modulePath, optionalCallback) {
-  const cb = optionalCallback || noop
-
   return new Promise((resolve, reject) => {
-    let pkg = {}
+    const done = finalize(resolve, reject, optionalCallback || noop)
 
-    try {
-      pkg = require(path.join(modulePath, 'package.json'))
-    } catch (err) {
-      // make sure to invoke callback as well in case of an error here
+    readPackage(modulePath, (err, pkg) => {
+      if (err) return done(err)
+
+      getLicensePath(modulePath, (err, licensePath) => {
+        if (err) return done(err)
+
+        const res = {
+          license: pkg.license,
+          licenseFile: licensePath,
+          repo: getRepo(pkg),
+          private: !!pkg.private
+        }
+
+        done(null, res)
+      })
+    })
+  })
+}
+
+// return data for both callback && promise interface
+function finalize (resolve, reject, cb) {
+  return (err, res) => {
+    if (err) {
       cb(err)
-      throw err
+      return reject(err)
     }
 
-    const tasks = LICENSES.map(makeTask.bind(this, modulePath))
+    cb(null, res)
+    resolve(res)
+  }
+}
+
+function readPackage (modulePath, cb) {
+  fs.readFile(path.join(modulePath, 'package.json'), 'utf8', (err, content) => {
+    let pkg = {}
+
+    if (!err) {
+      try {
+        pkg = JSON.parse(content)
+      } catch (e) {
+        // ignored
+      }
+    }
+
+    // keeping the error first convention even if we never return an error here
+    cb(null, pkg)
+  })
+}
+
+function getLicensePath (modulePath, cb) {
+  fs.readdir(modulePath, (err, files) => {
+    if (err) {
+      if (err.code === 'ENOENT') {
+        err.message = 'Module not found: ' + err.message
+      }
+
+      return cb(err)
+    }
+
+    const tasks = LICENSES.filter(file => (files.indexOf(file) !== -1))
+                          .map(makeTask.bind(this, modulePath))
 
     parallel(tasks, (err, licensePath) => {
-      if (err) {
-        cb(err)
-        return reject(err)
-      }
+      if (err) return cb(err)
 
       licensePath = licensePath.reduce((acc, el) => {
         if (el) return el
         return acc
       }, false)
 
-      const res = {
-        license: pkg.license,
-        licenseFile: licensePath,
-        repo: getRepo(pkg),
-        private: !!pkg.private
-      }
-
-      cb(null, res)
-      resolve(res)
+      cb(null, licensePath)
     })
   })
 }
@@ -76,6 +115,7 @@ function getRepo (pkg) {
 function makeTask (modulePath, file) {
   return function task (cb) {
     const where = path.join(modulePath, file)
+
     fs.stat(where, (err, stats) => {
       if (err && err.code === 'ENOENT') return cb(null, false)
       if (err) return cb(err)

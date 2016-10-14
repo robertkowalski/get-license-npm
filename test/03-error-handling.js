@@ -7,7 +7,7 @@ test('invokes callback on module not found error', (t) => {
   const f = '/fooo/bar/baz'
 
   getLicenseInfo(f, (err, res) => {
-    tap.equal(err.code, 'MODULE_NOT_FOUND')
+    tap.ok(/Module not found/.test(err.message))
 
     t.end()
   })
@@ -17,7 +17,7 @@ test('rejects promise on module not found error', (t) => {
   const f = '/fooo/bar/baz'
 
   getLicenseInfo(f).then(() => {}).catch((err) => {
-    tap.equal(err.code, 'MODULE_NOT_FOUND')
+    tap.ok(/Module not found/.test(err.message))
 
     t.end()
   })
