@@ -109,7 +109,8 @@ function getRepo (pkg) {
 
   const repo = hostedGitInfo.fromUrl(pkg.repository.url || pkg.repository)
 
-  return repo.browse()
+  // repo can be empty in some cases, so we must check
+  return repo ? repo.browse() : null
 }
 
 function makeTask (modulePath, file) {
