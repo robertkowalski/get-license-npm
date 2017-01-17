@@ -47,6 +47,11 @@ getLicenseInfo(modulePath)
 */
 ```
 
+## Intraoperability
+
+compatible with [https://github.com/arndissler/deps-flatlist-webpack](deps-flatlist-webpack)
+which can be used to get licenses for webpack bundles.
+
 ## Contributing
 
 `get-license-npm` is an OPEN Open Source Project. This means that:
